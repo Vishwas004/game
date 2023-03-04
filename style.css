@@ -64,3 +64,14 @@
     .main_2 div{
         margin: 5%;
     }
+    #play-again{
+        padding: 1vw;
+        background-color: rgba(146, 249, 215, 0.502);
+        border: none;
+        cursor: pointer;
+        border-radius: 7px;
+        font-size:large;
+        height: 80px;
+        width: 80px;
+        display: none;
+    }

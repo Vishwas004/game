@@ -5,11 +5,12 @@ let isGameOver = false;
 boxes.forEach(e =>{
 	e.innerHTML=""
 	e.addEventListener("click",()=>{
-		if(!isGameOver && e.innerHTML === "")
+		if(!isGameOver && e.innerHTML === ""){
 		e.innerHTML = turn;
 		cheakWin();
 		cheakDraw();
 		changeTurn();
+		}
 	})
 })
 function changeTurn(){
@@ -39,74 +40,29 @@ function cheakWin(){
 		let v2 = boxes[winConditions[i][2]].innerHTML;
 
 		if (v0 !="" && v0 === v1 && v0 === v2) {
-			isGameOver(true)
+			isGameOver= true;
+			document.querySelector("#result").innerHTML = turn + " win";
+			document.querySelector("#play-again").style.disply = "inline"
+
+			for(j=0;j<3;j++){
+				boxes[winConditions[i][j]].style.backGroundColor = "#08d9d6"
+				boxes[winConditions[i][j]].style.Color = "#000"
+			}
 		}
 	}
 
 }
 function cheakDraw(){
+    if(!isGameOver){
+        let isDraw = true;
+        boxes.forEach(e =>{
+            if(e.innerHTML === "") isDraw = false;
+        })
 
+        if(isDraw){
+            isGameOver = true;
+            document.querySelector("#results").innerHTML = "Draw";
+            document.querySelector("#play-again").style.display = "inline"
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// console.log('wellcome')
-// const PLAYER_X_CLASS = 'x'
-// const PLAYER_O_CLASS = 'circle'
-// const WINNING_COMBINATIONS = [
-// 	[0, 1, 2],
-// 	[3, 4, 5],
-// 	[6, 7, 8],
-// 	[0, 3, 6],
-// 	[1, 4, 7],
-// 	[2, 5, 8],
-// 	[0, 4, 8],
-// 	[2, 4, 6]
-// ]
-// const cellElements = document.querySelectorAll('box')
-// const boardElement = document.getElementById('container')
-// const winningMessageElement = document.getElementById('winningMessage')
-// const restartButton = document.getElementById('restartButton')
-// const winningMessageTextElement = document.getElementById('winningMessageText')
-// let isPlayer_O_Turn = false
-
-// startGame()
-
-// restartButton.addEventListener('click', startGame)
-
-// function startGame() {
-// 	isPlayer_O_Turn = false
-// 	cellElements.forEach(cell => {
-// 		cell.classList.remove(PLAYER_X_CLASS)
-// 		cell.classList.remove(PLAYER_O_CLASS)
-// 		cell.removeEventListener('click', handleCellClick)
-// 		cell.addEventListener('click', handleCellClick, { once: true })
-// 	})
-// 	setBoardHoverClass()
-
-
-
-
-    
-// 	winningMessageElement.classList.remove('show')
-// }
